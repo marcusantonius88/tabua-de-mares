@@ -38,13 +38,21 @@ class Buscador
                 $i++;
             }
 
+            $tabuas = [];
+
             $tabua = [];
             foreach ($trsSelecionadas as $trs) {
                 $filhos = $trs->childNodes;
-                $tabua['hora'] = $filhos->item(1)->textContent;
-                $tabua['altura'] = $filhos->item(2)->textContent;
 
-                $tabuas[] = $tabua;
+                // Verifica se $filhos é diferente de null antes de acessar suas propriedades
+                if ($filhos && $filhos->item(1) && $filhos->item(2)) {
+                    $tabua = [];
+
+                    $tabua['hora'] = $filhos->item(1)->textContent;
+                    $tabua['altura'] = $filhos->item(2)->textContent;
+
+                    $tabuas[] = $tabua;
+                }
             }
         }
 
